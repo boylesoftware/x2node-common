@@ -1,0 +1,23 @@
+{
+  "name": "x2node-common",
+  "version": "1.0.0",
+  "description": "Common utilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boylesoftware/x2node-common.git"
+  },
+  "author": "Lev Himmelfarb <lev@boylesoftware.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boylesoftware/x2node-common/issues"
+  },
+  "homepage": "https://github.com/boylesoftware/x2node-common#readme",
+  "engines": {
+    "node": ">=4.3.2"
+  }
+}
