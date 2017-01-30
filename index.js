@@ -23,6 +23,18 @@
  * @external Promise
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise}
  */
+/**
+ * ES6 <code>Map</code> object.
+ *
+ * @external Map
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map}
+ */
+/**
+ * ES6 <code>Symbol</code> object.
+ *
+ * @external Symbol
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol}
+ */
 
 
 /////////////////////////////////////////////////////////////////////////////////
