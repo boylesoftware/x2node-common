@@ -63,3 +63,47 @@ exports.X2UsageError = class extends Error {
 		this.message = message;
 	}
 }
+
+/**
+ * Provided syntax error.
+ *
+ * @extends external:Error
+ */
+exports.X2SyntaxError = class extends Error {
+
+	/**
+	 * Create new error to throw.
+	 *
+	 * @param {string} message The error description.
+	 */
+	constructor(message) {
+		super();
+
+		Error.captureStackTrace(this, this.constructor);
+
+		this.name = 'X2SyntaxError';
+		this.message = message;
+	}
+}
+
+/**
+ * Provided data error.
+ *
+ * @extends external:Error
+ */
+exports.X2DataError = class extends Error {
+
+	/**
+	 * Create new error to throw.
+	 *
+	 * @param {string} message The error description.
+	 */
+	constructor(message) {
+		super();
+
+		Error.captureStackTrace(this, this.constructor);
+
+		this.name = 'X2DataError';
+		this.message = message;
+	}
+}
