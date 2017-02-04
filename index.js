@@ -38,7 +38,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////
-// Errors.
+// Errors
 /////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -107,3 +107,45 @@ exports.X2DataError = class extends Error {
 		this.message = message;
 	}
 }
+
+
+/////////////////////////////////////////////////////////////////////////////////
+// Logger
+/////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Debug loggers.
+ *
+ * @private
+ * @type {Object.<string,Function>}
+ */
+const DEBUG_LOGGERS = {};
+
+/**
+ * Get debug logger.
+ *
+ * @param {string} section Section being debugged.
+ * @returns {Function} Debug logger function that takes one argument, which is
+ * the debug message.
+ */
+exports.getDebugLogger = function(section) {
+
+	let sectionUC;
+	let logger = DEBUG_LOGGERS[sectionUC = section.toUpperCase()];
+	if (!logger) {
+		const re = new RegExp('\\b' + sectionUC + '\\b', 'i');
+		logger = DEBUG_LOGGERS[sectionUC] = (
+			re.test(process.env.NODE_DEBUG) ?
+				function(msg) {
+					console.error(
+						(new Date()).toISOString() +
+							' ' + process.pid +
+							' ' + sectionUC +
+							': ' + msg);
+				} :
+				function() {}
+		);
+	}
+
+	return logger;
+};
