@@ -36,12 +36,6 @@
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set}
  */
 /**
- * ES6 <code>Symbol</code> object.
- *
- * @external Symbol
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol}
- */
-/**
  * ES6 <code>RegExp</code> object.
  *
  * @external RegExp
