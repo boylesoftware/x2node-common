@@ -147,11 +147,26 @@ exports.getDebugLogger = function(section) {
 						(new Date()).toISOString() +
 							' ' + process.pid +
 							' ' + sectionUC +
-							': ' + msg);
+							': ' + msg
+					);
 				} :
 				function() {}
 		);
 	}
 
 	return logger;
+};
+
+/**
+ * Log application error.
+ *
+ * @param {string} msg Error message.
+ * @param {external:Error} [err] Optional error object.
+ */
+exports.error = function(msg, err) {
+
+	console.error(
+		(new Date()).toISOString() + ' ' + process.pid + ': ' + msg +
+			(err ? ': [' + err.name + ']: ' + err.message : '')
+	);
 };
