@@ -17,31 +17,6 @@
  * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/errors.html#errors_class_error}
  */
 
-/**
- * ES6 <code>Promise</code> object.
- *
- * @external Promise
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise}
- */
-/**
- * ES6 <code>Map</code> object.
- *
- * @external Map
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map}
- */
-/**
- * ES6 <code>Set</code> object.
- *
- * @external Set
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set}
- */
-/**
- * ES6 <code>RegExp</code> object.
- *
- * @external RegExp
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp}
- */
-
 
 /////////////////////////////////////////////////////////////////////////////////
 // Errors
