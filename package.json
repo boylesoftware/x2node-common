@@ -4,7 +4,7 @@
   "description": "Common utilities.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint **/*.js",
+    "test": "eslint .",
     "postversion": "git push"
   },
   "repository": {
