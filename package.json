@@ -4,7 +4,7 @@
   "description": "Common utilities.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint **/*.js",
     "postversion": "git push"
   },
   "repository": {
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/boylesoftware/x2node-common#readme",
   "engines": {
     "node": ">=4.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1"
   }
 }

@@ -118,12 +118,14 @@ exports.getDebugLogger = function(section) {
 		logger = DEBUG_LOGGERS[sectionUC] = (
 			re.test(process.env.NODE_DEBUG) ?
 				function(msg) {
+					/* eslint-disable no-console */
 					console.error(
 						(new Date()).toISOString() +
 							' ' + process.pid +
 							' ' + sectionUC +
 							': ' + msg
 					);
+					/* eslint-enable no-console */
 				} :
 				function() {}
 		);
@@ -140,8 +142,10 @@ exports.getDebugLogger = function(section) {
  */
 exports.error = function(msg, err) {
 
+	/* eslint-disable no-console */
 	console.error(
 		(new Date()).toISOString() + ' ' + process.pid + ': ' + msg +
 			(err ? ': [' + err.name + ']: ' + err.message : '')
 	);
+	/* eslint-enable no-console */
 };
