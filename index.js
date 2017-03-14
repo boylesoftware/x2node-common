@@ -98,7 +98,7 @@ exports.X2DataError = class extends Error {
  * Debug loggers.
  *
  * @private
- * @type {Object.<string,Function>}
+ * @type {Object.<string,function>}
  */
 const DEBUG_LOGGERS = {};
 
@@ -106,7 +106,7 @@ const DEBUG_LOGGERS = {};
  * Get debug logger.
  *
  * @param {string} section Section being debugged.
- * @returns {Function} Debug logger function that takes one argument, which is
+ * @returns {function} Debug logger function that takes one argument, which is
  * the debug message.
  */
 exports.getDebugLogger = function(section) {
