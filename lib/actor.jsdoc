@@ -1,0 +1,21 @@
+/**
+ * Interface for actor objects.
+ *
+ * @interface Actor
+ * @memberof module:x2node-common
+ */
+/**
+ * Actor stamp, which is a string or number that identifies the actor in various
+ * historical records, such as logs, record modification histories, etc. It can
+ * be, for example, a user login name or a user account id.
+ *
+ * @member {(string|number)} module:x2node-common.Actor#stamp
+ * @readonly
+ */
+/**
+ * Tell if the actor has the specified role.
+ *
+ * @function module:x2node-common.Actor#hasRole
+ * @param {string} role The role name.
+ * @returns {boolean} <code>true</code> if the actor has the role.
+ */
