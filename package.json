@@ -1,11 +1,11 @@
 {
   "name": "x2node-common",
-  "version": "1.1.0",
+  "version": "1.1.1-snapshot",
   "description": "Common utilities.",
   "main": "index.js",
   "scripts": {
     "test": "eslint .",
-    "postversion": "git push"
+    "postversion": "git push --tags"
   },
   "repository": {
     "type": "git",
