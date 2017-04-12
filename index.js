@@ -16,6 +16,12 @@
  * @external Error
  * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/errors.html#errors_class_error}
  */
+/**
+ * Node.js <code>EventEmitter</code> object.
+ *
+ * @external EventEmitter
+ * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/events.html#events_class_eventemitter}
+ */
 
 
 /////////////////////////////////////////////////////////////////////////////////
