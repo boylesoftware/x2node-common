@@ -22,6 +22,24 @@
  * @external EventEmitter
  * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/events.html#events_class_eventemitter}
  */
+/**
+ * Node.js <code>Buffer</code> object.
+ *
+ * @external Buffer
+ * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/buffer.html#buffer_class_buffer}
+ */
+/**
+ * Node.js <code>stream.Readable</code> object.
+ *
+ * @external stream.Readable
+ * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/stream.html#stream_class_stream_readable}
+ */
+/**
+ * Node.js parsed URL object.
+ *
+ * @external Url
+ * @see {@link https://nodejs.org/dist/latest-v4.x/docs/api/url.html}
+ */
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -151,7 +169,7 @@ exports.error = function(msg, err) {
 	/* eslint-disable no-console */
 	console.error(
 		(new Date()).toISOString() + ' ' + process.pid + ': ' + msg +
-			(err ? ': [' + err.name + ']: ' + err.message : '')
+			(err ? '\n' + err.stack : '')
 	);
 	/* eslint-enable no-console */
 };
