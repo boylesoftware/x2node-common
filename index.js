@@ -168,7 +168,7 @@ exports.error = function(msg, err) {
 
 	/* eslint-disable no-console */
 	console.error(
-		(new Date()).toISOString() + ' ' + process.pid + ': ' + msg +
+		(new Date()).toISOString() + ' ' + process.pid + ' ERROR: ' + msg +
 			(err ? '\n' + err.stack : '')
 	);
 	/* eslint-enable no-console */
