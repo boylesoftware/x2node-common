@@ -2,6 +2,12 @@
 
 This is a common utilities module for the X2 Framework for Node.js. The module is included by other modules that comprise the farmework but can also be used by the application as well.
 
+## Table of Contents
+
+* [Errors](#errors)
+* [Logging](#logging)
+* [Actors](#actors)
+
 ## Errors
 
 The framework modules, when encounter an unrecoverable error, often throw an `Error` object. The framework uses the following three error classes that are exported by the common module:
@@ -62,3 +68,15 @@ try {
 ```
 
 The log ouput includes the timestamp, the PID, the section (or "ERROR" for the error) and the message itself. An error message also includes the error stack, if provided.
+
+## Actors
+
+Throughout the framework's modules the notion of _actor_ is used, which is the entity that performs an operation (makes a web-service API call, runs a database query, etc.). In the most cases the actor is what often call _user_ or _principal_ in many other systems. X2 Framework does not use the term _user_ because the entity that performs operations is not necessarily a person (it can be a script, or the system itself).
+
+For the modules, the actor is represented by an object, that exposes the following properties and methods:
+
+* `stamp` - Actor stamp, which is a string or a number that identifies the actor in various historical records, such as logs, record modification histories, etc. It can be, for example, a user login name or a user account id.
+
+* `hasRole(role)` - Tells if the actor has the specified role.
+
+Applications normally add more application-specific properties and methods to the actor objects, but the framework modules expect at least the above.
