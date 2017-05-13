@@ -13,6 +13,13 @@
  * @readonly
  */
 /**
+ * The shortest possible unique identification of the actor (such as the user id,
+ * for example).
+ *
+ * @member {(string|number)} module:x2node-common.Actor#id
+ * @readonly
+ */
+/**
  * Tell if the actor has the specified role.
  *
  * @function module:x2node-common.Actor#hasRole

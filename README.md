@@ -77,6 +77,8 @@ For the modules, the actor is represented by an object, that exposes the followi
 
 * `stamp` - Actor stamp, which is a string or a number that identifies the actor in various historical records, such as logs, record modification histories, etc. It can be, for example, a user login name or a user account id.
 
+* `id` - The shotest possible unique identification of the actor, such as the user id, for example. Can be either a number or a string.
+
 * `hasRole(role)` - Tells if the actor has the specified role.
 
 Applications normally add more application-specific properties and methods to the actor objects, but the framework modules expect at least the above.
