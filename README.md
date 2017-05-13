@@ -2,6 +2,8 @@
 
 This is a common utilities module for the X2 Framework for Node.js. The module is included by other modules that comprise the farmework but can also be used by the application as well.
 
+See module's [API Reference Documentation](https://boylesoftware.github.io/x2node-api-reference/module-x2node-common.html).
+
 ## Table of Contents
 
 * [Errors](#errors)
