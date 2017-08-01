@@ -29,16 +29,16 @@ const common = require('x2node-common');
 
 try {
 
-	// call some framework stuff
-	...
+    // call some framework stuff
+    ...
 
 } catch (err) {
-	if (err instanceof common.X2SyntaxError) {
-		// do something
-		...
-	} else {
-		throw err;
-	}
+    if (err instanceof common.X2SyntaxError) {
+        // do something
+        ...
+    } else {
+        throw err;
+    }
 }
 
 ...
@@ -60,12 +60,12 @@ const common = require('x2node-common');
 const log = common.getDebugLogger('MYAPP');
 
 try {
-	log('starting dangerous operation');
+    log('starting dangerous operation');
 
-	...
+    ...
 
 } catch (err) {
-	common.error('serious error', err);
+    common.error('serious error', err);
 }
 ```
 
