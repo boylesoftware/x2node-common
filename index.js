@@ -60,12 +60,11 @@ exports.X2UsageError = class extends Error {
 	 * @param {string} message The error description.
 	 */
 	constructor(message) {
-		super();
-
-		Error.captureStackTrace(this, this.constructor);
+		super(message);
 
 		this.name = 'X2UsageError';
-		this.message = message;
+
+		Error.captureStackTrace(this, this.constructor);
 	}
 }
 
@@ -82,12 +81,11 @@ exports.X2SyntaxError = class extends Error {
 	 * @param {string} message The error description.
 	 */
 	constructor(message) {
-		super();
-
-		Error.captureStackTrace(this, this.constructor);
+		super(message);
 
 		this.name = 'X2SyntaxError';
-		this.message = message;
+
+		Error.captureStackTrace(this, this.constructor);
 	}
 }
 
@@ -104,12 +102,11 @@ exports.X2DataError = class extends Error {
 	 * @param {string} message The error description.
 	 */
 	constructor(message) {
-		super();
-
-		Error.captureStackTrace(this, this.constructor);
+		super(message);
 
 		this.name = 'X2DataError';
-		this.message = message;
+
+		Error.captureStackTrace(this, this.constructor);
 	}
 }
 
@@ -138,17 +135,13 @@ exports.getDebugLogger = function(section) {
 	let sectionUC;
 	let logger = DEBUG_LOGGERS[sectionUC = section.toUpperCase()];
 	if (!logger) {
-		const re = new RegExp('\\b' + sectionUC + '\\b', 'i');
+		const re = new RegExp(`\\b${sectionUC}\\b`, 'i');
 		logger = DEBUG_LOGGERS[sectionUC] = (
 			re.test(process.env.NODE_DEBUG) ?
 				function(msg) {
+					const ts = (new Date()).toISOString();
 					/* eslint-disable no-console */
-					console.error(
-						(new Date()).toISOString() +
-							' ' + process.pid +
-							' ' + sectionUC +
-							': ' + msg
-					);
+					console.error(`${ts} ${process.pid} ${sectionUC}: ${msg}`);
 					/* eslint-enable no-console */
 				} :
 				function() {}
@@ -166,10 +159,9 @@ exports.getDebugLogger = function(section) {
  */
 exports.error = function(msg, err) {
 
+	const ts = (new Date()).toISOString();
 	/* eslint-disable no-console */
 	console.error(
-		(new Date()).toISOString() + ' ' + process.pid + ' ERROR: ' + msg +
-			(err ? '\n' + err.stack : '')
-	);
+		`${ts} ${process.pid} ERROR: ${msg}${err ? '\n' + err.stack : ''}`);
 	/* eslint-enable no-console */
 };
