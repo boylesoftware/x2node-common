@@ -69,7 +69,14 @@ try {
 }
 ```
 
-The log ouput includes the timestamp, the PID, the section (or "ERROR" for the error) and the message itself. An error message also includes the error stack, if provided.
+By default, the log ouput includes the timestamp, the PID, the section (or "ERROR" for the error) and the message itself. An error message also includes the error stack, if provided.
+
+The supplementary information included in the log output can be configured using `X2_LOG` environment variable, which is a comma-separated (no whitespace!) list of options. Each option can be:
+
+* _nots_ - Do no include the message timestamp.
+* _nopid_ - Do not include the process PID.
+* _nosec_ - Do not include the debug log section. Does not affect error messages, which always include "ERROR" in the place of the section.
+* _env:VARIABLE_ - Include value of the `VARIABLE` environment variable.
 
 ## Actors
 

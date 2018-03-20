@@ -124,6 +124,38 @@ exports.X2DataError = class extends Error {
 const DEBUG_LOGGERS = {};
 
 /**
+ * Build message build functions list.
+ *
+ * @private
+ * @param {string} [section] Debug log section, nothing if error log.
+ * @returns {Array.<function>} Message builder functions.
+ */
+function buildMessageBuilder(section) {
+
+	const logOptions = process.env.X2_LOG || '';
+
+	const msgBuilder = new Array();
+
+	if (!/(^|,)nots(,|$)/i.test(logOptions))
+		msgBuilder.push(() => (new Date()).toISOString());
+
+	if (!/(^|,)nopid(,|$)/i.test(logOptions))
+		msgBuilder.push(() => String(process.pid));
+
+	let m;
+	const envRE = new RegExp('(?:^|,)env:([^,]+)', 'gi');
+	while ((m = envRE.exec(logOptions)) !== null) {
+		const envName = m[1];
+		msgBuilder.push(() => process.env[envName]);
+	}
+
+	if (section && !/(^|,)nosec(,|$)/i.test(logOptions))
+		msgBuilder.push(() => section);
+
+	return msgBuilder;
+}
+
+/**
  * Get debug logger.
  *
  * @param {string} section Section being debugged.
@@ -132,24 +164,39 @@ const DEBUG_LOGGERS = {};
  */
 exports.getDebugLogger = function(section) {
 
-	let sectionUC;
-	let logger = DEBUG_LOGGERS[sectionUC = section.toUpperCase()];
+	const sectionUC = section.toUpperCase();
+	let logger = DEBUG_LOGGERS[sectionUC];
 	if (!logger) {
 		const re = new RegExp(`\\b${sectionUC}\\b`, 'i');
-		logger = DEBUG_LOGGERS[sectionUC] = (
-			re.test(process.env.NODE_DEBUG) ?
-				function(msg) {
-					const ts = (new Date()).toISOString();
-					/* eslint-disable no-console */
-					console.error(`${ts} ${process.pid} ${sectionUC}: ${msg}`);
-					/* eslint-enable no-console */
-				} :
-				function() {}
-		);
+		if (re.test(process.env.NODE_DEBUG)) {
+			const msgBuilder = buildMessageBuilder(sectionUC)
+			const numParts = msgBuilder.length;
+			if (numParts > 0) {
+				const f = msgBuilder[numParts - 1];
+				msgBuilder[numParts - 1] = () => f() + ':';
+			}
+			msgBuilder.push(msg => msg);
+			logger = function(msg) {
+				/* eslint-disable no-console */
+				console.error(msgBuilder.map(p => p(msg)).join(' '));
+				/* eslint-enable no-console */
+			};
+		} else {
+			logger = function() {};
+		}
+		DEBUG_LOGGERS[sectionUC] = logger;
 	}
 
 	return logger;
 };
+
+/**
+ * The error logger function.
+ *
+ * @private
+ * @type {function}
+ */
+let errorLogger;
 
 /**
  * Log application error.
@@ -159,9 +206,16 @@ exports.getDebugLogger = function(section) {
  */
 exports.error = function(msg, err) {
 
-	const ts = (new Date()).toISOString();
-	/* eslint-disable no-console */
-	console.error(
-		`${ts} ${process.pid} ERROR: ${msg}${err ? '\n' + err.stack : ''}`);
-	/* eslint-enable no-console */
+	if (!errorLogger) {
+		const msgBuilder = buildMessageBuilder();
+		msgBuilder.push(() => 'ERROR:');
+		msgBuilder.push((msg, err) => `${msg}${err ? '\n' + err.stack : ''}`);
+		errorLogger = function(msg, err) {
+			/* eslint-disable no-console */
+			console.error(msgBuilder.map(p => p(msg, err)).join(' '));
+			/* eslint-enable no-console */
+		};
+	}
+
+	errorLogger(msg, err);
 };
