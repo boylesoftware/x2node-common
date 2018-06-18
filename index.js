@@ -160,7 +160,8 @@ function buildMessageBuilder(section) {
  *
  * @param {string} section Section being debugged.
  * @returns {function} Debug logger function that takes one argument, which is
- * the debug message.
+ * the debug message. The function also has a read-only Boolean property
+ * <code>enabled</code>, which tells if the logger is enabled or if it is a noop.
  */
 exports.getDebugLogger = function(section) {
 
@@ -168,7 +169,8 @@ exports.getDebugLogger = function(section) {
 	let logger = DEBUG_LOGGERS[sectionUC];
 	if (!logger) {
 		const re = new RegExp(`\\b${sectionUC}\\b`, 'i');
-		if (re.test(process.env.NODE_DEBUG)) {
+		const enabled = re.test(process.env.NODE_DEBUG);
+		if (enabled) {
 			const msgBuilder = buildMessageBuilder(sectionUC)
 			const numParts = msgBuilder.length;
 			if (numParts > 0) {
@@ -184,6 +186,10 @@ exports.getDebugLogger = function(section) {
 		} else {
 			logger = function() {};
 		}
+		Object.defineProperty(logger, 'enabled', {
+			value: enabled,
+			writable: false
+		});
 		DEBUG_LOGGERS[sectionUC] = logger;
 	}
 

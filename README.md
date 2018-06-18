@@ -69,6 +69,15 @@ try {
 }
 ```
 
+The returned debug logger function also has a Boolean property `enabled`, which tells if the debug logger is enabled or is a noop. For example, it can be used like the following:
+
+```javascript
+const log = common.getDebugLogger('MYAPP');
+
+if (log.enabled)
+    log(`a message ${that} is very ${expensive} to ${build}`);
+```
+
 By default, the log ouput includes the timestamp, the PID, the section (or "ERROR" for the error) and the message itself. An error message also includes the error stack, if provided.
 
 The supplementary information included in the log output can be configured using `X2_LOG` environment variable, which is a comma-separated (no whitespace!) list of options. Each option can be:
